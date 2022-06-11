@@ -30,6 +30,7 @@ const getLocalItems = () => {
     return [];
   }
 };
+
 const Register = () => {
   const [data, setData] = useState(initialData);
   const [items, setItems] = useState(getLocalItems());
@@ -42,12 +43,14 @@ const Register = () => {
       validator();
     }
   };
+
   const handleImage = (e) => {
     setData({
       ...data,
       [e.target.name]: URL.createObjectURL(e.target.files[0]),
     });
   };
+
   const validator = () => {
     let errors = { ...initialData };
     let reg = /(7|8|9)\d{9}/;
@@ -162,7 +165,6 @@ const Register = () => {
   };
 
   return (
-    // <div className="m_div">
     <div className="register-container">
       <div className="title">Registration form</div>
       <div className="items">
@@ -379,7 +381,6 @@ const Register = () => {
               onChange={handleImage}
               required
             />
-            {/* <img src={file}/> */}
             {<p className="errors">{validation.profile}</p>}
           </div>
         </div>
@@ -390,7 +391,6 @@ const Register = () => {
         </div>
       </div>
     </div>
-    // </div>
   );
 };
 export default Register;
