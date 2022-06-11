@@ -92,32 +92,31 @@ const Register = () => {
     }
     if (!data.birthDate) {
       errors.birthDate = "Birth date required ";
-      isValid=false;
+      isValid = false;
     }
     if (!data.city) {
       errors.city = "Select city";
-      isValid=false;
+      isValid = false;
     }
     if (!data.state) {
       errors.state = "Select state";
-      isValid=false;
+      isValid = false;
     }
     if (!data.gender) {
       errors.gender = "Select gender";
-      isValid=false;
+      isValid = false;
     }
     if (!data.hobby.length) {
       errors.hobby = "Select hobby";
-      isValid=false;
+      isValid = false;
     }
     if (!data.language.length) {
       errors.language = "Select language";
-      isValid=false;
+      isValid = false;
     }
-
     if (!data.profile) {
       errors.profile = "Add profile image ";
-      isValid=false;
+      isValid = false;
     }
     setValidation(errors);
     return isValid;
@@ -127,7 +126,6 @@ const Register = () => {
 
   const onRegister = () => {
     if (validator()) {
-      // setItems([...items, data]);
       setError(false);
       localStorage.setItem("registerData", JSON.stringify([...items, data]));
       navigate("/");
