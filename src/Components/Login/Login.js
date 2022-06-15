@@ -1,20 +1,30 @@
-import React, { useState,useEffect } from "react";
-import { Button } from "@mui/material";
-import "./login.scss";
+import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
+
+import { Button } from "@mui/material";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+import "./login.scss";
 
 const initialData = {
   email: "",
   password: "",
 };
 
-const Login = (props) => {
+const Login = () => {
   const [loginData, setLoginData] = useState(initialData);
   const [errors, setErrors] = useState(false);
   const [validation, setValidation] = useState(initialData);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("loginData")) {
+      navigate("/dashboard");
+    }
+  });
 
   const inputHandle = (e) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
@@ -46,10 +56,11 @@ const Login = (props) => {
     let user = user_records?.find((e) => {
       return e.email === loginData.email;
     });
+
     if (user) {
       if (user.password === loginData.password) {
         navigate("dashboard");
-        localStorage.setItem("loginData", JSON.stringify([user]));
+        localStorage.setItem("loginData", JSON.stringify(user));
       } else {
         toast.warn("Wrong password");
       }
@@ -71,48 +82,47 @@ const Login = (props) => {
 
   return (
     <div className="m_div">
-    <div className="login-container">
-      <div className="title">Login</div>
-      <form>
-        <div className="login-detail">
-          <div className="input-box">
-            <label className="detail">Email Id:</label>
-            <input
-              type="text"
-              name="email"
-              placeholder="Enter email id"
-              value={loginData.email}
-              onChange={inputHandle}
-              required
-            />
-            {<p className="error">{validation.email}</p>}
+      <div className="login-container">
+        <div className="title">Login</div>
+        <form>
+          <div className="login-detail">
+            <div className="input-box">
+              <label className="detail">Email Id:</label>
+              <input
+                type="text"
+                name="email"
+                placeholder="Enter email id"
+                value={loginData.email}
+                onChange={inputHandle}
+                autoFocus
+              />
+              {<p className="error">{validation.email}</p>}
+            </div>
+            <div className="input-box">
+              <label className="detail"> Password:</label>
+              <input
+                type="password"
+                name="password"
+                placeholder="Enter password"
+                value={loginData.password}
+                onChange={inputHandle}
+              />
+              {<p className="error">{validation.password}</p>}
+            </div>
+            <div>
+              <Button type="submit" className="btnLogin" onClick={onLogin}>
+                Login
+              </Button>
+            </div>
+            <div>
+              <Link to="/register" className="hyper">
+                Create Account
+              </Link>
+            </div>
           </div>
-          <div className="input-box">
-            <label className="detail"> Password:</label>
-            <input
-              type="password"
-              name="password"
-              placeholder="Enter password"
-              value={loginData.password}
-              onChange={inputHandle}
-              required
-            />
-            {<p className="error">{validation.password}</p>}
-          </div>
-          <div>
-            <Button type="submit" className="btnLogin" onClick={onLogin} >
-              Login
-            </Button>
-          </div>
-          <div>
-            <Link to="/register" className="hyper">
-              Create Account
-            </Link>
-          </div>
-        </div>
-      </form>
-      <ToastContainer />
-    </div>
+        </form>
+        <ToastContainer />
+      </div>
     </div>
   );
 };
