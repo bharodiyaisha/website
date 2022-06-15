@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Button } from "@mui/material";
 
@@ -122,6 +122,11 @@ const Register = () => {
     return isValid;
   };
 
+  useEffect(() => {
+    if (localStorage.getItem("loginData")) {
+      navigate("/dashboard");
+    }
+  });
   const navigate = useNavigate();
 
   const onRegister = () => {
@@ -175,6 +180,7 @@ const Register = () => {
               name="firstName"
               onChange={handleInput}
               value={data.firstName}
+              autoFocus
             />
             {<p className="errors">{validation.firstName}</p>}
           </div>
@@ -276,7 +282,6 @@ const Register = () => {
             </select>
             <p className="errors">{validation.state}</p>
           </div>
-
           <div className="input-select">
             <label className="details">Gender:</label>
             <div className="category">
