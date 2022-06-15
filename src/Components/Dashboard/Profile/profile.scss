@@ -1,0 +1,174 @@
+$display: flex;
+$width: 100%;
+$input-height: 45px;
+$margin-bottom: 15px;
+
+@mixin input {
+  width: $width;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid rgb(58, 49, 49);
+  padding-left: 15px;
+  font-size: 16px;
+  border-bottom-width: 3px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins";
+}
+
+.m_div {
+  display: $display;
+  height: 100vh;
+  align-items: center;
+  background: #bcd4ff;
+  padding: 10px;
+}
+
+.register-container {
+  max-width: 700px;
+  width: $width;
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 5px;
+  box-shadow: 10px 5px 15px 10px rgba(0, 0, 0, 0.3);
+}
+
+.title {
+  font-size: 25px;
+  font-weight: 500;
+  position: relative;
+  text-align: center;
+}
+
+.registration-detail {
+  display: $display;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px 0 12px 0;
+}
+
+.input-name {
+  margin-bottom: $margin-bottom;
+  width: calc(100% / 3 - 10px);
+  & input {
+    height: $input-height;
+    @include input;
+  }
+}
+
+.input-address {
+  margin-bottom: $margin-bottom;
+  width: calc(100% - 10px);
+  & textarea {
+    height: 60px;
+    @include input;
+  }
+}
+
+.input-password {
+  margin-bottom: $margin-bottom;
+  width: calc(50% - 10px);
+  & input {
+    height: $input-height;
+    @include input;
+  }
+}
+
+.input-select {
+  margin-bottom: $margin-bottom;
+  width: calc(50% - 10px);
+  & select {
+    height: $input-height;
+    @include input;
+  }
+}
+
+.regDetails {
+  display: block;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.gender-title {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.category .dot {
+  height: 18px;
+  width: 7%;
+  background: white;
+  justify-content: space-between;
+  border-radius: 50%;
+  margin-left: 5px;
+  border: 5px solid transparent;
+}
+
+.errors {
+  color: red;
+  font-size: 20px;
+}
+
+.btnReg {
+  width: 100%;
+  height: $input-height;
+  background: linear-gradient(rgb(186, 186, 255), rgb(181, 181, 250));
+  box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 703px) {
+  .register-container {
+    max-width: 100px;
+    justify-content: center;
+  }
+  .input-name {
+    width: calc(50% / 1 - 20px);
+  }
+  .input-address {
+    width: calc(50% / 1 - 20px);
+  }
+  .input-password {
+    width: calc(50% / 1 - 20px);
+  }
+  .btnReg {
+    width: 100%;
+  }
+}
+
+@media (max-width: 682px) {
+  .register-container {
+    max-width: 100%;
+    justify-content: center;
+  }
+  .input-name,
+  .input-address,
+  .input-password,
+  .input-select {
+    width: calc(100% / 2 - 10px);
+  }
+  .btnReg {
+    width: 100%;
+  }
+}
+
+@media (max-width: 487px) {
+  .title {
+    font-size: 20px;
+  }
+  .m_div {
+    height: 10px;
+  }
+  .register-container {
+    max-width: 100%;
+  }
+  .input-name,
+  .input-address,
+  .input-password,
+  .input-select {
+    width: 100%;
+  }
+}
